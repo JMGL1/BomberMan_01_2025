@@ -38,7 +38,7 @@ void ABomberMan_012025GameMode::BeginPlay()
 			numeroBloqueConMovimiento++;
 		}
 
-		if (numeroBloqueConMovimiento >= 6
+		if (numeroBloqueConMovimiento >= 6)
 		{
 			bloque->bPuedeMoverse = false;
 		}
