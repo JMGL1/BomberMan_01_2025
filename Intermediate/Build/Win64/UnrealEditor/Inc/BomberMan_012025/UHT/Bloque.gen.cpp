@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "BomberMan_012025/Public/Bloque.h"
+#include "BomberMan_012025/Bloque.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeBloque() {}
 
@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeBloque() {}
 BOMBERMAN_012025_API UClass* Z_Construct_UClass_ABloque();
 BOMBERMAN_012025_API UClass* Z_Construct_UClass_ABloque_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
+ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_BomberMan_012025();
 // End Cross Module References
 
@@ -30,15 +31,33 @@ struct Z_Construct_UClass_ABloque_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "IncludePath", "Bloque.h" },
-		{ "ModuleRelativePath", "Public/Bloque.h" },
+		{ "ModuleRelativePath", "Bloque.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MallaBloque_MetaData[] = {
+		{ "Category", "Componentes" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Componente de malla est\xef\xbf\xbdtica\n" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Bloque.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Componente de malla est\xef\xbf\xbdtica" },
+#endif
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MallaBloque;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ABloque>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABloque_Statics::NewProp_MallaBloque = { "MallaBloque", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABloque, MallaBloque), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MallaBloque_MetaData), NewProp_MallaBloque_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABloque_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABloque_Statics::NewProp_MallaBloque,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ABloque_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ABloque_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_AActor,
 	(UObject* (*)())Z_Construct_UPackage__Script_BomberMan_012025,
@@ -50,11 +69,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_ABloque_Statics::ClassP
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	nullptr,
-	nullptr,
+	Z_Construct_UClass_ABloque_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
-	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_ABloque_Statics::PropPointers),
 	0,
 	0x009000A4u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ABloque_Statics::Class_MetaDataParams), Z_Construct_UClass_ABloque_Statics::Class_MetaDataParams)
@@ -76,14 +95,14 @@ ABloque::~ABloque() {}
 // End Class ABloque
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Public_Bloque_h_Statics
+struct Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Bloque_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABloque, ABloque::StaticClass, TEXT("ABloque"), &Z_Registration_Info_UClass_ABloque, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABloque), 3497376850U) },
+		{ Z_Construct_UClass_ABloque, ABloque::StaticClass, TEXT("ABloque"), &Z_Registration_Info_UClass_ABloque, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABloque), 1960942236U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Public_Bloque_h_1335661599(TEXT("/Script/BomberMan_012025"),
-	Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Public_Bloque_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Public_Bloque_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Bloque_h_509798628(TEXT("/Script/BomberMan_012025"),
+	Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Bloque_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_Bloque_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

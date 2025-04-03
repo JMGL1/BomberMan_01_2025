@@ -13,5 +13,6 @@ UCLASS()
 class BOMBERMAN_012025_API ABloqueBurbuja : public ABloque
 {
 	GENERATED_BODY()
-	
+public:
+	ABloqueBurbuja();
 };

@@ -3,18 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "GameFramework/Character.h"
 #include "Enemigo.generated.h"
 
-class UStaticMeshComponent;
-
 UCLASS()
-class BOMBERMAN_012025_API AEnemigo : public AActor
+class BOMBERMAN_012025_API AEnemigo : public ACharacter
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
+	float Energia = 10.00f;
+
+public:
+	// Sets default values for this character's properties
 	AEnemigo();
 
 protected:
@@ -25,14 +26,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-public:
-	UStaticMeshComponent* MeshComp;
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-
-public:
-	UPROPERTY(EditAnywhere,	BlueprintReadWrite,	Category = "FloatingActor")
-	float FloatSpeed = 20.0f;
-
-	UPROPERTY(EditAnywhere,	BlueprintReadWrite,	Category = "FloatingActor")
-	float RotationSpeed = 20.0f;
 };
