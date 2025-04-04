@@ -47,6 +47,12 @@
     <ClCompile Include="..\..\Source\BomberMan_012025\BloqueAcero.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueAgua.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueAgua.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\BloqueBurbuja.cpp">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
@@ -59,6 +65,12 @@
     <ClCompile Include="..\..\Source\BomberMan_012025\BloqueConcreto.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueHielo.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueHielo.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\BloqueLadrillo.cpp">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
@@ -69,6 +81,24 @@
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\BloqueMadera.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueOro.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueOro.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloquePasto.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloquePasto.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueVidrio.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\BloqueVidrio.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
     <None Include="..\..\Source\BomberMan_012025\BomberMan_012025.Build.cs">
@@ -110,10 +140,22 @@
     <ClCompile Include="..\..\Source\BomberMan_012025\Enemigo.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAereo.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAereo.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAnimal.cpp">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAnimal.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoTerrestre.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoTerrestre.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
   </ItemGroup>

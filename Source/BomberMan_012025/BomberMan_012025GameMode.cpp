@@ -3,12 +3,21 @@
 #include "BomberMan_012025GameMode.h"
 #include "BomberMan_012025Character.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Kismet/GameplayStatics.h"
 #include "Bloque.h"
 #include "BloqueBurbuja.h"
 #include "BloqueAcero.h"
 #include "BloqueConcreto.h"
 #include "BloqueLadrillo.h"
 #include "BloqueMadera.h"
+#include "BloqueHielo.h"
+#include "BloqueVidrio.h"
+#include "BloqueOro.h"
+#include "BloquePasto.h"
+#include "BloqueAgua.h"
+#include "EnemigoAereo.h"
+#include "EnemigoTerrestre.h"
+#include "Engine/World.h"
 
 ABomberMan_012025GameMode::ABomberMan_012025GameMode()
 {
@@ -46,6 +55,32 @@ void ABomberMan_012025GameMode::BeginPlay()
 		}
 	}
 
+	//Spawm de enemigos
+	UWorld* Mundo = GetWorld();
+	if (Mundo)
+	{
+		FVector Ubicacion = FVector(0.0f, 0.0f, 300.0f);
+		FRotator Rotacion = FRotator(0.0f, 0.0f, 0.0f);
+		FActorSpawnParameters ParametrosSpawn;
+
+		AEnemigoAereo* Enemigo = Mundo->SpawnActor<AEnemigoAereo>(AEnemigoAereo::StaticClass(), Ubicacion, Rotacion, ParametrosSpawn);
+
+		if (Enemigo)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Aéreo spawneado exitosamente en la ubicación: %s!"), *Ubicacion.ToString());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Error al spawnear Enemigo Aéreo."));
+		}
+	}
+
+
+	SpawnearEnemigo();
+
+
+	
+
 	GetWorld()->GetTimerManager().SetTimer(tHDestruirBloques, this, &ABomberMan_012025GameMode::DestruirBloque, 2.0f, true);
 }
 
@@ -56,7 +91,27 @@ void ABomberMan_012025GameMode::SpawnBloque(FVector posicionBloque, int32 tipoBl
 
 	ABloque* BloqueGenerado = nullptr;
 	// Elegir tipo de bloque basado en el valor
-	if (tipoBloque == 5)
+	if (tipoBloque == 10)
+	{
+		BloqueGenerado = GetWorld()->SpawnActor<ABloqueAgua>(ABloqueAgua::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+	}
+	else if (tipoBloque == 9)
+	{
+		BloqueGenerado = GetWorld()->SpawnActor<ABloquePasto>(ABloquePasto::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+	}
+	else if (tipoBloque == 8)
+	{
+		BloqueGenerado = GetWorld()->SpawnActor<ABloqueOro>(ABloqueOro::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+	}
+	else if (tipoBloque == 7)
+	{
+		BloqueGenerado = GetWorld()->SpawnActor<ABloqueVidrio>(ABloqueVidrio::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+	}
+	else if (tipoBloque == 6)
+	{
+		BloqueGenerado = GetWorld()->SpawnActor<ABloqueLadrillo>(ABloqueLadrillo::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+	}
+	else if (tipoBloque == 5)
 	{
 		BloqueGenerado = GetWorld()->SpawnActor<ABloqueBurbuja>(ABloqueBurbuja::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
 	}
@@ -70,7 +125,7 @@ void ABomberMan_012025GameMode::SpawnBloque(FVector posicionBloque, int32 tipoBl
 	}
 	else if (tipoBloque == 2)
 	{
-		BloqueGenerado = GetWorld()->SpawnActor<ABloqueLadrillo>(ABloqueLadrillo::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
+		BloqueGenerado = GetWorld()->SpawnActor<ABloqueHielo>(ABloqueHielo::StaticClass(), posicionBloque, FRotator(0.0f, 0.0f, 0.0f));
 	}
 	else if (tipoBloque == 1)
 	{
@@ -89,6 +144,7 @@ void ABomberMan_012025GameMode::SpawnBloque(FVector posicionBloque, int32 tipoBl
 
 void ABomberMan_012025GameMode::DestruirBloque()
 {
+	/*
 	//Seleccionar aleatoriamente un bloque del array ABloques para su eliminacion
 	int numeroBloques = aBloques.Num();
 	int NumeroAleatorio = FMath::RandRange(1, numeroBloques);
@@ -103,8 +159,32 @@ void ABomberMan_012025GameMode::DestruirBloque()
 			//primerBloque->SetActorLocation(FVector(100.0f, 100.0f, 100.0f));
 		}
 	}
+	*/
 }
 
+void ABomberMan_012025GameMode::SpawnearEnemigo()
+{
+	// Código para spawnear enemigos
+	FVector PosicionInicial1 = FVector(1000.0f, 1000.0f, 120.0f); // Cambia según lo que necesites
+	FRotator RotacionInicial1 = FRotator::ZeroRotator;
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	// Spawnea el enemigo
+	AEnemigoTerrestre* Enemigo = GetWorld()->SpawnActor<AEnemigoTerrestre>(
+		AEnemigoTerrestre::StaticClass(),
+		PosicionInicial1,
+		RotacionInicial1,
+		SpawnParams
+	);
+
+	if (Enemigo)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Enemigo terrestre creado correctamente."));
+	}
+}
 /*
 void AMyActor::TestMap()
 {

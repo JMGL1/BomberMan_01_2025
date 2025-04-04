@@ -33,4 +33,5 @@ public:
 	float FloatSpeed;
 	float RotationSpeed;
 	bool bPuedeMoverse;
+	FVector TamanoBloque;
 };

@@ -81,14 +81,14 @@ AEnemigoAnimal::~AEnemigoAnimal() {}
 // End Class AEnemigoAnimal
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemigoAnimal, AEnemigoAnimal::StaticClass, TEXT("AEnemigoAnimal"), &Z_Registration_Info_UClass_AEnemigoAnimal, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigoAnimal), 4181257614U) },
+		{ Z_Construct_UClass_AEnemigoAnimal, AEnemigoAnimal::StaticClass, TEXT("AEnemigoAnimal"), &Z_Registration_Info_UClass_AEnemigoAnimal, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemigoAnimal), 3587235590U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_4178820872(TEXT("/Script/BomberMan_012025"),
-	Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_1809688417(TEXT("/Script/BomberMan_012025"),
+	Z_CompiledInDeferFile_FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_EnemigoAnimal_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

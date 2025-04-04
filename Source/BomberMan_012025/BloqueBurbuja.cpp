@@ -7,7 +7,7 @@ ABloqueBurbuja::ABloqueBurbuja()
 {
     if (MallaBloque)
     {
-        static ConstructorHelpers::FObjectFinder<UMaterial> MaterialBase(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Basic_Floor.M_Basic_Floor'"));
+        static ConstructorHelpers::FObjectFinder<UMaterial> MaterialBase(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Water_Lake.M_Water_Lake'"));
 
         if (MaterialBase.Succeeded())
         {

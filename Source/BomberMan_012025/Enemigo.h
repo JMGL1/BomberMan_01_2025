@@ -9,24 +9,23 @@
 UCLASS()
 class BOMBERMAN_012025_API AEnemigo : public ACharacter
 {
-	GENERATED_BODY()
+   GENERATED_BODY()
 
 public:
-	float Energia = 10.00f;
-
-public:
-	// Sets default values for this character's properties
-	AEnemigo();
-
+// Sets default values for this character's properties
+AEnemigo();
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movimiento")
+float VelocidadMovimiento;
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Patrullaje")
+float RadioPatrullaje;
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Comportamiento")
+bool bPatrullajeHabilitado;
+virtual void BeginPlay() override;
+virtual void Mover(float DeltaTime);
+virtual void Patrullar();
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+public:
+virtual void Tick(float DeltaTime) override;
 
 };

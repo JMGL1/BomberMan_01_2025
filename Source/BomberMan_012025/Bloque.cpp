@@ -27,6 +27,12 @@ ABloque::ABloque()
 	RotationSpeed = 3.0f;
 
 	bPuedeMoverse = FMath::RandBool();
+
+	// Tamaño del bloque (se puede modificar desde el editor o código)
+	TamanoBloque = FVector(2.0f, 2.0f, 2.0f); // Escala predeterminada
+
+	// Aplicar el tamaño al bloque
+	MallaBloque->SetWorldScale3D(TamanoBloque);
 }
 
 // Called when the game starts or when spawned
