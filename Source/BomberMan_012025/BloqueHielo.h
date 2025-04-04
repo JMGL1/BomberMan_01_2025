@@ -18,4 +18,7 @@ public:
 
 	void BeginPlay();
 
+	void AlternarVisibilidad();
+private:
+	FTimerHandle TimerVisibilidad;
 };

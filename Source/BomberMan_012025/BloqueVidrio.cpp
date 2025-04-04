@@ -18,4 +18,12 @@ ABloqueVidrio::ABloqueVidrio()
 
 void ABloqueVidrio::BeginPlay()
 {
+    Super::BeginPlay();
+    GetWorld()->GetTimerManager().SetTimer(TimerDestruir, this, &ABloqueVidrio::DestruirBloque, 5.0f, false);
+}
+
+void ABloqueVidrio::DestruirBloque()
+{
+    Destroy();
+
 }

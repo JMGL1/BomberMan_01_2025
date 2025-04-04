@@ -18,6 +18,7 @@
 #include "EnemigoAereo.h"
 #include "EnemigoTerrestre.h"
 #include "Engine/World.h"
+#include "EnemigoSubterraneo.h"
 
 ABomberMan_012025GameMode::ABomberMan_012025GameMode()
 {
@@ -76,8 +77,13 @@ void ABomberMan_012025GameMode::BeginPlay()
 	}
 
 
-	SpawnearEnemigo();
+	SpawnearEnemigoTerrestre();
 
+	// Spawnear enemigos subterráneos
+	FVector UbicacionSubterranea1 = FVector(860.0f, 2360.0f, -50.0f);
+	FVector UbicacionSubterranea2 = FVector(860.0f, 6300.0f, -50.0f);
+	SpawnearEnemigoSubterraneo(UbicacionSubterranea1);
+	SpawnearEnemigoSubterraneo(UbicacionSubterranea2);
 
 	
 
@@ -162,7 +168,7 @@ void ABomberMan_012025GameMode::DestruirBloque()
 	*/
 }
 
-void ABomberMan_012025GameMode::SpawnearEnemigo()
+void ABomberMan_012025GameMode::SpawnearEnemigoTerrestre()
 {
 	// Código para spawnear enemigos
 	FVector PosicionInicial1 = FVector(1000.0f, 1000.0f, 120.0f); // Cambia según lo que necesites
@@ -183,6 +189,25 @@ void ABomberMan_012025GameMode::SpawnearEnemigo()
 	if (Enemigo)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Enemigo terrestre creado correctamente."));
+	}
+}
+
+void ABomberMan_012025GameMode::SpawnearEnemigoSubterraneo(FVector Ubicacion) {
+	UWorld* Mundo = GetWorld();
+	if (Mundo)
+	{
+		//FVector Ubicacion = FVector(2000.0f, 2000.0f, -50.0f);
+		FRotator Rotacion = FRotator::ZeroRotator;
+		FActorSpawnParameters ParametrosSpawn;
+		AEnemigoSubterraneo* EnemigoSubterraneo = Mundo->SpawnActor<AEnemigoSubterraneo>(AEnemigoSubterraneo::StaticClass(), Ubicacion, Rotacion, ParametrosSpawn);
+		if (EnemigoSubterraneo)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Subterráneo spawneado exitosamente en la ubicación: %s!"), *Ubicacion.ToString());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Error al spawnear Enemigo Subterráneo."));
+		}
 	}
 }
 /*

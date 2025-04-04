@@ -16,4 +16,8 @@ class BOMBERMAN_012025_API ABloqueMadera : public ABloque
 	
 public:
 	ABloqueMadera();
+	void BeginPlay();
+	void Tick(float DeltaTime);
+private:
+	FVector PosicionInicial;
 };

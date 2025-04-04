@@ -16,6 +16,11 @@ class BOMBERMAN_012025_API ABloqueVidrio : public ABloque
 	
 public:
 	ABloqueVidrio();
-	void BeginPlay();
+protected:
+	virtual void BeginPlay() override;
 
+private:
+	FTimerHandle TimerDestruir; // Declarar TimerDestruir
+
+	void DestruirBloque();
 };

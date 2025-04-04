@@ -15,3 +15,14 @@ ABloqueBurbuja::ABloqueBurbuja()
         }
     }
 }
+
+void ABloqueBurbuja::BeginPlay()
+{
+    Super::BeginPlay();
+    GetWorld()->GetTimerManager().SetTimer(TimerGiro, this, &ABloqueBurbuja::GirarBloque, 3.0f, true);
+}
+
+void ABloqueBurbuja::GirarBloque()
+{
+    SetActorRotation(FRotator(0.0f, GetActorRotation().Yaw + 180.0f, 0.0f));
+}

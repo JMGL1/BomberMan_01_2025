@@ -15,4 +15,9 @@ class BOMBERMAN_012025_API ABloqueBurbuja : public ABloque
 	GENERATED_BODY()
 public:
 	ABloqueBurbuja();
+protected:
+	virtual void BeginPlay() override;
+	void GirarBloque();
+private:
+	FTimerHandle TimerGiro;
 };

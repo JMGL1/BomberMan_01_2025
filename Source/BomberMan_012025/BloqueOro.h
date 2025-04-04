@@ -16,6 +16,17 @@ class BOMBERMAN_012025_API ABloqueOro : public ABloque
 protected:
 	// Called when the game starts or when spawned
 	ABloqueOro();
-	virtual void BeginPlay();
+
+protected:
+    // Se ejecuta al inicio del juego
+    virtual void BeginPlay() override;
+
+public:
+    // Se ejecuta cada frame para actualizar la lógica de movimiento
+    virtual void Tick(float DeltaTime) override;
+
+private:
+    // Almacena la posición inicial del bloque
+    FVector PosicionInicial;
 
 };

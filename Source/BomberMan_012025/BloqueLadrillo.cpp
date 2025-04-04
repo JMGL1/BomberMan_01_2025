@@ -29,3 +29,10 @@ void ABloqueLadrillo::BeginPlay()
 	Super::BeginPlay();
 
 }
+void ABloqueLadrillo::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    FRotator NuevaRotacion = GetActorRotation() + FRotator(0.0f, 2.0f, 0.0f);
+    SetActorRotation(NuevaRotacion);
+}
