@@ -70,6 +70,8 @@ void ABomberMan_012025GameMode::BeginPlay()
 		if (Enemigo)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Aéreo spawneado exitosamente en la ubicación: %s!"), *Ubicacion.ToString());
+			//Añadimos el enemigo a la lista de enemigos
+			aEnemigos.Add(Enemigo);
 		}
 		else
 		{
@@ -199,6 +201,10 @@ void ABomberMan_012025GameMode::SpawnearEnemigoTerrestre(FVector UbicacionTerres
 	if (Enemigo)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Enemigo terrestre creado correctamente."));
+
+		//Añadimos el enemigo a la lista de enemigos
+		aEnemigos.Add(Enemigo);
+
 	}
 }
 
@@ -213,6 +219,8 @@ void ABomberMan_012025GameMode::SpawnearEnemigoSubterraneo(FVector Ubicacion) {
 		if (EnemigoSubterraneo)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Subterráneo spawneado exitosamente en la ubicación: %s!"), *Ubicacion.ToString());
+			//Añadimos el enemigo a la lista de enemigos
+			aEnemigos.Add(EnemigoSubterraneo);
 		}
 		else
 		{
@@ -235,6 +243,8 @@ void ABomberMan_012025GameMode::SpawnearEnemigoAcuatico(FVector UbicacionAcuatic
 		if (EnemigoAcuatico)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Acuático spawneado exitosamente en la ubicación: %s!"), *UbicacionAcuatico.ToString());
+			//Añadimos el enemigo a la lista de enemigos
+			aEnemigos.Add(EnemigoAcuatico);
 		}
 		else
 		{

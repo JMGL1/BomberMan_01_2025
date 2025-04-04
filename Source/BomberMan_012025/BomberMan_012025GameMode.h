@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "BomberMan_012025GameMode.generated.h"
-class AEnemigoAereo;
+class AEnemigo;
 class ABloque;
 class ABloqueLadrillo;
 class AEnemigoTerrestre;
@@ -97,6 +97,9 @@ public:
 
 	// Declarar un array de punteros a objetos de tipo BloqueMadera
 	TArray<ABloque*> aBloques;
+
+	//Declarar un array de punteros a objetos de tipo enemigo
+	TArray<AEnemigo*> aEnemigos;
 	
 	FTimerHandle tHDestruirBloques;
 
