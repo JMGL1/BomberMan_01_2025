@@ -17,6 +17,7 @@ ABloqueLadrillo::ABloqueLadrillo()
             MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+	bPuedeMoverse = FMath::RandBool(); // Desactivar el movimiento
 }
 
 //void ABloqueLadrillo::Tick(float DeltaTime)
@@ -31,8 +32,13 @@ void ABloqueLadrillo::BeginPlay()
 }
 void ABloqueLadrillo::Tick(float DeltaTime)
 {
+
     Super::Tick(DeltaTime);
 
-    FRotator NuevaRotacion = GetActorRotation() + FRotator(0.0f, 2.0f, 0.0f);
-    SetActorRotation(NuevaRotacion);
+	if (bPuedeMoverse)
+	{
+        FRotator NuevaRotacion = GetActorRotation() + FRotator(0.0f, 2.0f, 0.0f);
+        SetActorRotation(NuevaRotacion);
+	}
+    
 }

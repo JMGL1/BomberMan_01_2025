@@ -16,6 +16,7 @@ ABloqueOro::ABloqueOro()
             MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+    bPuedeMoverse = FMath::RandBool();
 }
 
 
@@ -27,7 +28,10 @@ void ABloqueOro::BeginPlay()
 void ABloqueOro::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-
-    float NuevaPosicionX = PosicionInicial.X + FMath::Sin(GetWorld()->GetTimeSeconds() * 1.0f) * 10.0f;
-    SetActorLocation(FVector(NuevaPosicionX, GetActorLocation().Y, GetActorLocation().Z));
+	if (bPuedeMoverse)
+	{
+        float NuevaPosicionX = PosicionInicial.X + FMath::Sin(GetWorld()->GetTimeSeconds() * 2.0f) * 50.0f;
+        SetActorLocation(FVector(NuevaPosicionX, GetActorLocation().Y, GetActorLocation().Z));
+	}
+    
 }

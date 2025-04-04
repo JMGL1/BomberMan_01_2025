@@ -15,6 +15,7 @@ ABloqueMadera::ABloqueMadera()
            MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
        }
    }
+   bPuedeMoverse = FMath::RandBool(); // Desactivar el movimiento
 }
 
 void ABloqueMadera::BeginPlay()
@@ -27,6 +28,9 @@ void ABloqueMadera::Tick(float DeltaTime)
 {
    Super::Tick(DeltaTime);
 
-   float NuevaAltura = PosicionInicial.Z + FMath::Sin(GetWorld()->GetTimeSeconds() * 2.0f) * 50.0f;
-   SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, NuevaAltura));
+   if (bPuedeMoverse)
+   {
+       float NuevaAltura = PosicionInicial.Z + FMath::Sin(GetWorld()->GetTimeSeconds() * 2.0f) * 50.0f;
+       SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, NuevaAltura));
+   }
 }

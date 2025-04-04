@@ -14,6 +14,7 @@ ABloqueVidrio::ABloqueVidrio()
             MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+	bPuedeMoverse = FMath::RandBool(); // Desactivar el movimiento
 }
 
 void ABloqueVidrio::BeginPlay()
@@ -24,6 +25,10 @@ void ABloqueVidrio::BeginPlay()
 
 void ABloqueVidrio::DestruirBloque()
 {
-    Destroy();
+    if (bPuedeMoverse)
+    {
+        // Lógica para destruir el bloque
+        Destroy();
+    }
 
 }

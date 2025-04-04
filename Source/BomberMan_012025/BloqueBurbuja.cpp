@@ -14,6 +14,7 @@ ABloqueBurbuja::ABloqueBurbuja()
             MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+	bPuedeMoverse = FMath::RandBool(); // Desactivar el movimiento
 }
 
 void ABloqueBurbuja::BeginPlay()
@@ -24,5 +25,7 @@ void ABloqueBurbuja::BeginPlay()
 
 void ABloqueBurbuja::GirarBloque()
 {
-    SetActorRotation(FRotator(0.0f, GetActorRotation().Yaw + 180.0f, 0.0f));
+    if (bPuedeMoverse) {
+        SetActorRotation(FRotator(0.0f, GetActorRotation().Yaw + 180.0f, 0.0f));
+    }
 }

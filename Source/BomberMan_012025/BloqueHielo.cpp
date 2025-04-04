@@ -14,6 +14,7 @@ ABloqueHielo::ABloqueHielo()
             MallaBloque->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
         }
     }
+	bPuedeMoverse = FMath::RandBool(); // Desactivar el movimiento
 }
 
 void ABloqueHielo::BeginPlay()
@@ -24,6 +25,9 @@ void ABloqueHielo::BeginPlay()
 
 void ABloqueHielo::AlternarVisibilidad()  
 {  
-  bool EstadoActual = IsHidden(); // Cambiar GetActorHiddenInGame() por IsHidden()
-  SetActorHiddenInGame(!EstadoActual);  
+    if (bPuedeMoverse) {
+        bool EstadoActual = IsHidden(); // Cambiar GetActorHiddenInGame() por IsHidden()
+        SetActorHiddenInGame(!EstadoActual);
+    }
+   
 }

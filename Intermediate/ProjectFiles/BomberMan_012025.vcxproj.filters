@@ -140,6 +140,12 @@
     <ClCompile Include="..\..\Source\BomberMan_012025\Enemigo.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAcuatico.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAcuatico.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoAereo.cpp">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>

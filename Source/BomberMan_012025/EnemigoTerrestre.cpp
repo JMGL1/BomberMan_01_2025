@@ -19,7 +19,7 @@ AEnemigoTerrestre::AEnemigoTerrestre()
         MallaTerrestre->SetStaticMesh(ObjetoMalla.Object);
     }
 
-    CentroMovimiento = FVector(2000.0f, 2000.0f, 120.0f);
+    CentroMovimiento = FVector(800.0f, 3500.0f, 120.0f);
     DireccionMovimiento = FVector(1.0f, 0.0f, 0.0f); // Movimiento en línea recta en el eje X
     VelocidadVuelo = 600.0f; // Velocidad en unidades por segundo
     Tiempo = 0.0f;

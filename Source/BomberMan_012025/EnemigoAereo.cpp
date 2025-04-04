@@ -17,7 +17,7 @@ AEnemigoAereo::AEnemigoAereo()
 
     CentroMovimiento = FVector(2000.0f, 2000.0f, 120.0f);
     LimiteMovimiento = 1000.0f;
-    AlturaVuelo = 700.0f;
+    AlturaVuelo = 500.0f;
     VelocidadVuelo = 2.0f;
     Tiempo = 0.0f;
 }

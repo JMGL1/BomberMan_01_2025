@@ -19,6 +19,7 @@
 #include "EnemigoTerrestre.h"
 #include "Engine/World.h"
 #include "EnemigoSubterraneo.h"
+#include "EnemigoAcuatico.h"
 
 ABomberMan_012025GameMode::ABomberMan_012025GameMode()
 {
@@ -76,16 +77,25 @@ void ABomberMan_012025GameMode::BeginPlay()
 		}
 	}
 
-
-	SpawnearEnemigoTerrestre();
+	// Spawn de enemigos terrestres
+	FVector UbicacionTerrestre1 = FVector(860.0f, 3160.0f, 20.0f);
+	FVector UbicacionTerrestre2 = FVector(860.0f, 4800.0f, 20.0f);
+	SpawnearEnemigoTerrestre(UbicacionTerrestre1);
+	SpawnearEnemigoTerrestre(UbicacionTerrestre2);
 
 	// Spawnear enemigos subterráneos
-	FVector UbicacionSubterranea1 = FVector(860.0f, 2360.0f, -50.0f);
-	FVector UbicacionSubterranea2 = FVector(860.0f, 6300.0f, -50.0f);
+	FVector UbicacionSubterranea1 = FVector(860.0f, 2490.0f, 5.0f);
+	FVector UbicacionSubterranea2 = FVector(860.0f, 5800.0f, 5.0f);
 	SpawnearEnemigoSubterraneo(UbicacionSubterranea1);
 	SpawnearEnemigoSubterraneo(UbicacionSubterranea2);
 
-	
+	//Spawn de enemigos acuáticos
+	// Spawnear enemigo acuático
+	FVector UbicacionAcuatico1 = FVector(1370.0f, 1850.0f, FMath::RandRange(100.0f, 300.0f));
+	FVector UbicacionAcuatico2 = FVector(840.0f, 6700.0f, FMath::RandRange(100.0f, 300.0f));
+	SpawnearEnemigoAcuatico(UbicacionAcuatico1);
+	SpawnearEnemigoAcuatico(UbicacionAcuatico2);
+
 
 	GetWorld()->GetTimerManager().SetTimer(tHDestruirBloques, this, &ABomberMan_012025GameMode::DestruirBloque, 2.0f, true);
 }
@@ -168,10 +178,10 @@ void ABomberMan_012025GameMode::DestruirBloque()
 	*/
 }
 
-void ABomberMan_012025GameMode::SpawnearEnemigoTerrestre()
+void ABomberMan_012025GameMode::SpawnearEnemigoTerrestre(FVector UbicacionTerrestre)
 {
 	// Código para spawnear enemigos
-	FVector PosicionInicial1 = FVector(1000.0f, 1000.0f, 120.0f); // Cambia según lo que necesites
+	//FVector PosicionInicial1 = FVector(1000.0f, 1000.0f, 120.0f); // Cambia según lo que necesites
 	FRotator RotacionInicial1 = FRotator::ZeroRotator;
 
 	FActorSpawnParameters SpawnParams;
@@ -181,7 +191,7 @@ void ABomberMan_012025GameMode::SpawnearEnemigoTerrestre()
 	// Spawnea el enemigo
 	AEnemigoTerrestre* Enemigo = GetWorld()->SpawnActor<AEnemigoTerrestre>(
 		AEnemigoTerrestre::StaticClass(),
-		PosicionInicial1,
+		UbicacionTerrestre,
 		RotacionInicial1,
 		SpawnParams
 	);
@@ -207,6 +217,28 @@ void ABomberMan_012025GameMode::SpawnearEnemigoSubterraneo(FVector Ubicacion) {
 		else
 		{
 			UE_LOG(LogTemp, Error, TEXT("Error al spawnear Enemigo Subterráneo."));
+		}
+	}
+}
+
+void ABomberMan_012025GameMode::SpawnearEnemigoAcuatico(FVector UbicacionAcuatico)
+{
+	UWorld* Mundo = GetWorld();
+	if (Mundo)
+	{
+		//FVector UbicacionAcuatico = FVector(860.0f, 2360.0f, FMath::RandRange(100.0f, 300.0f)); // En rango medio
+		FRotator RotacionAcuatico = FRotator::ZeroRotator;
+		FActorSpawnParameters ParametrosSpawnAcuatico;
+
+		AEnemigoAcuatico* EnemigoAcuatico = Mundo->SpawnActor<AEnemigoAcuatico>(AEnemigoAcuatico::StaticClass(), UbicacionAcuatico, RotacionAcuatico, ParametrosSpawnAcuatico);
+
+		if (EnemigoAcuatico)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("¡Enemigo Acuático spawneado exitosamente en la ubicación: %s!"), *UbicacionAcuatico.ToString());
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Error al spawnear Enemigo Acuático."));
 		}
 	}
 }

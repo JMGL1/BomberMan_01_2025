@@ -53,7 +53,29 @@ void AEnemigoSubterraneo::Tick(float DeltaTime)
     // Alternar entre emerger y esconderse según el tiempo
     if (TiempoAcumulado >= TiempoEntreEmergencias)
     {
-        //AlternarEmergencia();
+        AlternarEmergencia();
         TiempoAcumulado = 0.0f; // Reinicia el contador
     }
+}
+
+void AEnemigoSubterraneo::AlternarEmergencia()
+{
+    // Cambiar el estado de emergido
+    Emergido = !Emergido;
+
+    FVector NuevaPosicion = GetActorLocation();
+
+    if (Emergido)
+    {
+        // Emerger: Subir el enemigo a la superficie
+        NuevaPosicion.Z += 80.0f; // Ajustar la altura para emerger
+    }
+    else
+    {
+        // Esconderse: Bajar el enemigo bajo tierra
+        NuevaPosicion.Z -= 80.0f; // Ajustar la altura para esconderse
+    }
+
+    // Actualizar la posición del actor
+    SetActorLocation(NuevaPosicion);
 }
