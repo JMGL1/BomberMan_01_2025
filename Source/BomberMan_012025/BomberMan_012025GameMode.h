@@ -33,6 +33,11 @@ public:
 	// Declarar la posición del siguiente bloque
 	//FVector posicionSiguienteBloque = FVector(1000.0f, 500.0f, 20.0f);
 
+	void RestoreSpeed(ACharacter* PlayerCharacter);
+
+	UFUNCTION()
+	void ActivateSpeedBoost(ACharacter* PlayerCharacter, float SpeedBoostAmount);
+
 
 	// Declarar un mapa de bloques como un array bidimensional
 	TArray<TArray<int32>> aMapaBloques = {
@@ -105,6 +110,7 @@ public:
 
 	//void SpawnBloques();
 	void SpawnBloque(FVector posicion, int32 tipoBloque);
+	void SpawnSuelo();
 	void DestruirBloque();
 };
 

@@ -170,5 +170,17 @@
     <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoTerrestre.h">
       <Filter>Source\BomberMan_012025</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoTest.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\EnemigoTest.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\SueloDeAgua.cpp">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BomberMan_012025\SueloDeAgua.h">
+      <Filter>Source\BomberMan_012025</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

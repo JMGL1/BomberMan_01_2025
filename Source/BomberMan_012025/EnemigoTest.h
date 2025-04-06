@@ -12,18 +12,24 @@ class BOMBERMAN_012025_API AEnemigoTest : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
-	AEnemigoTest();
+    AEnemigoTest();
+
+private:
+    UPROPERTY(VisibleAnywhere)
+    UStaticMeshComponent* CubeVisual;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+public:
+    virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+private:
+    FVector MoveDirection;
+    float MoveSpeed;
 
+    UFUNCTION()
+    void OnCapsuleHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
+        UPrimitiveComponent* OtherComp, FVector NormalImpulse,
+        const FHitResult& Hit);
 };

@@ -9,10 +9,15 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class ACharacter;
 #ifdef BOMBERMAN_012025_BomberMan_012025GameMode_generated_h
 #error "BomberMan_012025GameMode.generated.h already included, missing '#pragma once' in BomberMan_012025GameMode.h"
 #endif
 #define BOMBERMAN_012025_BomberMan_012025GameMode_generated_h
+
+#define FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execActivateSpeedBoost);
+
 
 #define FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +44,7 @@ public: \
 #define FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_INCLASS_NO_PURE_DECLS \
 	FID_Users_Magne_Documents_Unreal_Projects_BomberMan_012025_Source_BomberMan_012025_BomberMan_012025GameMode_h_16_ENHANCED_CONSTRUCTORS \
 private: \

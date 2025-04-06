@@ -1,27 +1,51 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+#include "Capsula.h"  
+#include "GameFramework/Character.h"  
+#include "GameFramework/GameModeBase.h"  
+#include "BomberMan_012025GameMode.h"  
+#include "Components/SphereComponent.h"  // Agregar esta línea para incluir la definición de USphereComponent
 
+ACapsula::ACapsula()  
+{  
+   PrimaryActorTick.bCanEverTick = true;  
 
-#include "Capsula.h"
+   // Crear la malla de la cápsula  
+   CapsulaMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CapsulaMesh"));  
+   RootComponent = CapsulaMesh;  
 
-// Sets default values
-ACapsula::ACapsula()
-{
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+   // Crear un collider para detectar colisiones  
+   USphereComponent* CapsulaCollider = CreateDefaultSubobject<USphereComponent>(TEXT("CapsulaCollider"));  
+   CapsulaCollider->SetupAttachment(CapsulaMesh);  
+   CapsulaCollider->OnComponentBeginOverlap.AddDynamic(this, &ACapsula::OnOverlapBegin);  
 
+   // Cantidad de velocidad que otorgará al personaje  
+   SpeedBoostAmount = 1000.0f;  
+}  
+
+void ACapsula::BeginPlay()  
+{  
+   Super::BeginPlay();  
+}  
+
+void ACapsula::Tick(float DeltaTime)  
+{  
+   Super::Tick(DeltaTime);  
+}  
+
+void ACapsula::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,  
+   UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,  
+   bool bFromSweep, const FHitResult& SweepResult)  
+{  
+   ACharacter* PlayerCharacter = Cast<ACharacter>(OtherActor);  
+   if (PlayerCharacter)  
+   {  
+       // Obtener el Game Mode y activar el poder  
+       ABomberMan_012025GameMode* GameMode = Cast<ABomberMan_012025GameMode>(GetWorld()->GetAuthGameMode());  
+       if (GameMode)  
+       {  
+           GameMode->ActivateSpeedBoost(PlayerCharacter, SpeedBoostAmount);  
+       }  
+
+       // Destruir la cápsula después de que el personaje la recoge  
+       Destroy();  
+   }  
 }
-
-// Called when the game starts or when spawned
-void ACapsula::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ACapsula::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

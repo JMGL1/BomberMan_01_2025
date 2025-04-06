@@ -39,5 +39,5 @@ void AEnemigoTerrestre::Tick(float DeltaTime)
     FVector NuevaPosicion = GetActorLocation() + (DireccionMovimiento * VelocidadVuelo * DeltaTime);
     SetActorLocation(NuevaPosicion);
 
-    UE_LOG(LogTemp, Warning, TEXT("Enemigo aéreo moviéndose en línea recta: X=%f, Y=%f, Z=%f"), NuevaPosicion.X, NuevaPosicion.Y, NuevaPosicion.Z);
+    //UE_LOG(LogTemp, Warning, TEXT("Enemigo terrestre moviéndose en línea recta: X=%f, Y=%f, Z=%f"), NuevaPosicion.X, NuevaPosicion.Y, NuevaPosicion.Z);
 }

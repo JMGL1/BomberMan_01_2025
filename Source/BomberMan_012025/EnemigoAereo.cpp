@@ -41,5 +41,5 @@ void AEnemigoAereo::Tick(float DeltaTime)
 
     SetActorLocation(FVector(PosicionX, PosicionY, PosicionZ));
 
-    UE_LOG(LogTemp, Warning, TEXT("Enemigo aéreo moviéndose en trayectoria de infinito: X=%f, Y=%f, Z=%f"), PosicionX, PosicionY, PosicionZ);
+    //UE_LOG(LogTemp, Warning, TEXT("Enemigo aéreo moviéndose en trayectoria de infinito: X=%f, Y=%f, Z=%f"), PosicionX, PosicionY, PosicionZ);
 }

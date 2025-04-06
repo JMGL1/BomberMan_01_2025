@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "SueloDeAgua.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -18,6 +19,8 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 ABomberMan_012025Character::ABomberMan_012025Character()
 {
+
+	PrimaryActorTick.bCanEverTick = true; // Asegúrate de que esto esté
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 		
@@ -126,4 +129,37 @@ void ABomberMan_012025Character::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+//Nuevo metodo para revisar la superficie bajo los pies
+void ABomberMan_012025Character::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	RevisarSuperficieBajoLosPies();
+}
+
+//Modo para revisar si el piso es de agua (POR AHORA)
+void ABomberMan_012025Character::RevisarSuperficieBajoLosPies()
+{
+	FVector Start = GetActorLocation();
+	FVector End = Start - FVector(0, 0, 250.0f); // 50 unidades hacia abajo
+
+	FHitResult Hit;
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this); // Ignora al personaje
+
+	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, Params))
+	{
+		AActor* ActorDebajo = Hit.GetActor();
+		if (ActorDebajo && ActorDebajo->IsA(ASueloDeAgua::StaticClass()))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("SUELO DE AGUA DETECTADO"));
+			GetCharacterMovement()->MaxWalkSpeed = 250.0f;
+			return;
+		}
+	}
+
+	// Piso normal
+	GetCharacterMovement()->MaxWalkSpeed = 500.0f;
 }

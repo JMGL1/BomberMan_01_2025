@@ -1,27 +1,35 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
+// SueloDeAgua.cpp
 #include "SueloDeAgua.h"
+#include "Components/StaticMeshComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
-// Sets default values
 ASueloDeAgua::ASueloDeAgua()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = false;
 
+    Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+    RootComponent = Mesh;
+
+    // Usa una malla básica (plano o cubo)
+	static ConstructorHelpers::FObjectFinder<UMaterial> MaterialBase(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Water_Lake.M_Water_Lake'")); // o "/Engine/BasicShapes/Cube.Cube"
+    if (MaterialBase.Succeeded())
+    {
+        Mesh->SetMaterial(0, MaterialBase.Object); // Asignar el material al slot 0
+    }
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Engine/BasicShapes/Cube.Cube")); // o "/Engine/BasicShapes/Plane.Plane"
+    if (MeshAsset.Succeeded())
+    {
+        Mesh->SetStaticMesh(MeshAsset.Object);
+        Mesh->SetRelativeScale3D(FVector(50.0f, 100.0f, 1.0f)); // Escala para que sea piso
+    }
+
+    // Configura la colisión correctamente
+    Mesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+    Mesh->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+    Mesh->SetCollisionObjectType(ECC_WorldStatic);
 }
 
-// Called when the game starts or when spawned
 void ASueloDeAgua::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
-
-// Called every frame
-void ASueloDeAgua::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

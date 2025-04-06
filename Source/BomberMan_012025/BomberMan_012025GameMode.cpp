@@ -4,6 +4,8 @@
 #include "BomberMan_012025Character.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "TimerManager.h"
 #include "Bloque.h"
 #include "BloqueBurbuja.h"
 #include "BloqueAcero.h"
@@ -20,6 +22,7 @@
 #include "Engine/World.h"
 #include "EnemigoSubterraneo.h"
 #include "EnemigoAcuatico.h"
+#include "SueloDeAgua.h"
 
 ABomberMan_012025GameMode::ABomberMan_012025GameMode()
 {
@@ -36,6 +39,9 @@ void ABomberMan_012025GameMode::BeginPlay()
 	Super::BeginPlay();
 
 	GEngine->AddOnScreenDebugMessage(-1, -1, FColor::Red, TEXT("Bloque Spawning"));
+	//Suelo
+	
+	SpawnSuelo();
 
 	// Recorremos la matriz para generar los bloques
 	for (int32 fila = 0; fila < aMapaBloques.Num(); ++fila)
@@ -49,7 +55,7 @@ void ABomberMan_012025GameMode::BeginPlay()
 				FVector posicionBloque = FVector(
 					XInicial + columna * AnchoBloque,
 					YInicial + fila * LargoBloque,
-					20.0f); // Z queda en 0 (altura del bloque)
+					0.0f); // Z queda en 0 (altura del bloque)
 
 				// Llamamos a la función para generar un bloque
 				SpawnBloque(posicionBloque, valor);
@@ -100,6 +106,14 @@ void ABomberMan_012025GameMode::BeginPlay()
 
 
 	GetWorld()->GetTimerManager().SetTimer(tHDestruirBloques, this, &ABomberMan_012025GameMode::DestruirBloque, 2.0f, true);
+}
+
+void ABomberMan_012025GameMode::SpawnSuelo() {
+	// Código para spawnear bloques
+	UWorld* Mundo = GetWorld();
+	if (Mundo) {
+		Mundo->SpawnActor<ASueloDeAgua>(ASueloDeAgua::StaticClass(), FVector(7960.0f, 5460.0f, -50.0f), FRotator::ZeroRotator);
+	}
 }
 
 // Función para generar un bloque
@@ -249,6 +263,42 @@ void ABomberMan_012025GameMode::SpawnearEnemigoAcuatico(FVector UbicacionAcuatic
 		else
 		{
 			UE_LOG(LogTemp, Error, TEXT("Error al spawnear Enemigo Acuático."));
+		}
+	}
+}
+
+void ABomberMan_012025GameMode::ActivateSpeedBoost(ACharacter* PlayerCharacter, float SpeedBoostAmount)
+{
+	if (PlayerCharacter)
+	{
+		UCharacterMovementComponent* MovementComp = PlayerCharacter->GetCharacterMovement();
+		if (MovementComp)
+		{
+			// Aumentar la velocidad
+			MovementComp->MaxWalkSpeed += SpeedBoostAmount;
+
+			// Iniciar temporizador para restaurar la velocidad
+			GetWorld()->GetTimerManager().SetTimerForNextTick([this, PlayerCharacter, SpeedBoostAmount]()
+				{
+					FTimerHandle TimerHandle;
+					GetWorld()->GetTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateLambda([this, PlayerCharacter, SpeedBoostAmount]()
+						{
+							RestoreSpeed(PlayerCharacter);
+						}), 5.0f, false);
+				});
+		}
+	}
+}
+
+void ABomberMan_012025GameMode::RestoreSpeed(ACharacter* PlayerCharacter)
+{
+	if (PlayerCharacter)
+	{
+		UCharacterMovementComponent* MovementComp = PlayerCharacter->GetCharacterMovement();
+		if (MovementComp)
+		{
+			// Restaurar la velocidad al valor original
+			MovementComp->MaxWalkSpeed -= 1000.0f; // Debe coincidir con el SpeedBoostAmount
 		}
 	}
 }

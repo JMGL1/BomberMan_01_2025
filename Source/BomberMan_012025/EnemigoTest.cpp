@@ -1,34 +1,52 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "EnemigoTest.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Engine/StaticMesh.h"
 
-// Sets default values
 AEnemigoTest::AEnemigoTest()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = true;
 
+    // Dirección inicial y velocidad
+    MoveDirection = FVector(1, 0, 0);
+    MoveSpeed = 300.f;
+
+    // Crear componente visual (cubo)
+    CubeVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("CubeVisual"));
+    CubeVisual->SetupAttachment(RootComponent); // Se adjunta al capsule del Character
+
+    // Cargar la malla del cubo desde los assets del motor
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMeshAsset(TEXT("/Engine/BasicShapes/Cube.Cube"));
+    if (CubeMeshAsset.Succeeded())
+    {
+        CubeVisual->SetStaticMesh(CubeMeshAsset.Object);
+        CubeVisual->SetRelativeLocation(FVector(0.5f, 0.5f, -GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight()));
+        CubeVisual->SetWorldScale3D(FVector(1.0f)); // Tamaño del cubo visual
+    }
+
+    // Detectar colisiones
+    GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AEnemigoTest::OnCapsuleHit);
 }
 
-// Called when the game starts or when spawned
 void AEnemigoTest::BeginPlay()
 {
-	Super::BeginPlay();
-	
+    Super::BeginPlay();
 }
 
-// Called every frame
 void AEnemigoTest::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+    Super::Tick(DeltaTime);
 
+    // Mover continuamente en la dirección actual
+    AddMovementInput(MoveDirection, 1.0f);
 }
 
-// Called to bind functionality to input
-void AEnemigoTest::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AEnemigoTest::OnCapsuleHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
+    UPrimitiveComponent* OtherComp, FVector NormalImpulse,
+    const FHitResult& Hit)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+    // Cambiar dirección horizontal al chocar
+    MoveDirection *= -1;
 }
-
