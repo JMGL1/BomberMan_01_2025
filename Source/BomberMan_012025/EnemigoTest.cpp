@@ -10,7 +10,7 @@ AEnemigoTest::AEnemigoTest()
     PrimaryActorTick.bCanEverTick = true;
 
     // Dirección inicial y velocidad
-    MoveDirection = FVector(1, 0, 0);
+    MoveDirection = FVector(1, 1, 0);
     MoveSpeed = 300.f;
 
     // Crear componente visual (cubo)
@@ -22,8 +22,8 @@ AEnemigoTest::AEnemigoTest()
     if (CubeMeshAsset.Succeeded())
     {
         CubeVisual->SetStaticMesh(CubeMeshAsset.Object);
-        CubeVisual->SetRelativeLocation(FVector(0.5f, 0.5f, -GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight()));
-        CubeVisual->SetWorldScale3D(FVector(1.0f)); // Tamaño del cubo visual
+        CubeVisual->SetRelativeLocation(FVector(0.0f, 0.0f, -GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight()));
+        CubeVisual->SetWorldScale3D(FVector(0.5f)); // Tamaño del cubo visual
     }
 
     // Detectar colisiones
@@ -48,5 +48,14 @@ void AEnemigoTest::OnCapsuleHit(UPrimitiveComponent* HitComp, AActor* OtherActor
     const FHitResult& Hit)
 {
     // Cambiar dirección horizontal al chocar
-    MoveDirection *= -1;
+    MoveDirection.X *= -1;
+	if (Contador < 4)
+	{
+		Contador++;
+	}
+	else
+	{
+		Contador = 0;
+		MoveDirection.Y *= -1;
+	}
 }

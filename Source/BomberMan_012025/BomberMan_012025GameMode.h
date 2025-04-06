@@ -112,6 +112,8 @@ public:
 	void SpawnBloque(FVector posicion, int32 tipoBloque);
 	void SpawnSuelo();
 	void DestruirBloque();
+
+	void SpawnEnemigosTest(FVector UbicacionSpawn);
 };
 
 /*

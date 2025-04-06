@@ -44,9 +44,13 @@ class ABomberMan_012025Character : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	
+
 public:
 	ABomberMan_012025Character();
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "PowerUp")
+	bool bTienePowerUpVelocidad = false;
 
 protected:
 

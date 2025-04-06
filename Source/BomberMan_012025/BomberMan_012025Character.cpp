@@ -142,12 +142,18 @@ void ABomberMan_012025Character::Tick(float DeltaTime)
 //Modo para revisar si el piso es de agua (POR AHORA)
 void ABomberMan_012025Character::RevisarSuperficieBajoLosPies()
 {
+	// Si tiene un PowerUp activo, no modificar la velocidad
+	if (bTienePowerUpVelocidad)
+	{
+		return;
+	}
+
 	FVector Start = GetActorLocation();
-	FVector End = Start - FVector(0, 0, 250.0f); // 50 unidades hacia abajo
+	FVector End = Start - FVector(0, 0, 250.0f); // Hacia abajo
 
 	FHitResult Hit;
 	FCollisionQueryParams Params;
-	Params.AddIgnoredActor(this); // Ignora al personaje
+	Params.AddIgnoredActor(this);
 
 	if (GetWorld()->LineTraceSingleByChannel(Hit, Start, End, ECC_Visibility, Params))
 	{

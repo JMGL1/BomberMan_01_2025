@@ -23,6 +23,7 @@
 #include "EnemigoSubterraneo.h"
 #include "EnemigoAcuatico.h"
 #include "SueloDeAgua.h"
+#include "EnemigoTest.h"
 
 ABomberMan_012025GameMode::ABomberMan_012025GameMode()
 {
@@ -104,6 +105,8 @@ void ABomberMan_012025GameMode::BeginPlay()
 	SpawnearEnemigoAcuatico(UbicacionAcuatico1);
 	SpawnearEnemigoAcuatico(UbicacionAcuatico2);
 
+	FVector UbicacionTest = FVector(970.0f, 1110.0f, 100.0f);
+	SpawnEnemigosTest(UbicacionTest);
 
 	GetWorld()->GetTimerManager().SetTimer(tHDestruirBloques, this, &ABomberMan_012025GameMode::DestruirBloque, 2.0f, true);
 }
@@ -115,7 +118,6 @@ void ABomberMan_012025GameMode::SpawnSuelo() {
 		Mundo->SpawnActor<ASueloDeAgua>(ASueloDeAgua::StaticClass(), FVector(7960.0f, 5460.0f, -50.0f), FRotator::ZeroRotator);
 	}
 }
-
 // Función para generar un bloque
 void ABomberMan_012025GameMode::SpawnBloque(FVector posicionBloque, int32 tipoBloque)
 {
@@ -330,6 +332,13 @@ void AMyActor::TestMap()
 }
 */
 
+void ABomberMan_012025GameMode::SpawnEnemigosTest(FVector Ubicacion) {
+    UWorld* Mundo = GetWorld();
+    if (Mundo) {
+        FActorSpawnParameters ParametrosSpawn;
+        Mundo->SpawnActor<AEnemigoTest>(AEnemigoTest::StaticClass(), Ubicacion, FRotator::ZeroRotator, ParametrosSpawn);
+    }
+}
 
 // Create a new Enemigo
 //ABloque* bloque01 = GetWorld()->SpawnActor<ABloque>(ABloque::StaticClass(), FVector(934.0f, 1370.0f, 100.0f), FRotator(0.0f, 0.0f, 0.0f));

@@ -27,6 +27,7 @@ public:
 private:
     FVector MoveDirection;
     float MoveSpeed;
+    int Contador;
 
     UFUNCTION()
     void OnCapsuleHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
